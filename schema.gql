@@ -1,0 +1,47 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type User {
+  id: Int!
+  nickname: String
+}
+
+type Option {
+  id: Int!
+  score: Int!
+  content: String!
+  question_id: Int!
+}
+
+type Question {
+  id: Int!
+  content: String!
+  survey_id: Int!
+  options: [Option!]!
+}
+
+type Query {
+  getUser(id: Int!): User!
+}
+
+type Mutation {
+  createUser(inputList: CreateUserInput!): User!
+  createOption(createOptionInput: CreateOptionInput!): Option!
+  createQuestion(createQuestionInput: CreateQuestionInput!): Question!
+}
+
+input CreateUserInput {
+  nickname: String!
+}
+
+input CreateOptionInput {
+  score: Float!
+  content: String!
+  question_id: Float!
+}
+
+input CreateQuestionInput {
+  content: String!
+  survey_id: Float!
+}
