@@ -30,6 +30,10 @@ export class SurveyService {
         return await this.surveyRepository.save(survey);
     }
 
+    async update(survey: Survey): Promise<Survey> {
+        return await this.surveyRepository.save(survey);
+    }
+
     async delete(id :number): Promise<void> {
         await this.surveyRepository.delete(id);
     }

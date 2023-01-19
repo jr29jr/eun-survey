@@ -14,6 +14,11 @@ export class SurveyResolver {
     }  
 
     @Mutation(() => Survey)
+    async updateSurvey(@Args("survey") survey: Survey) {
+      return await this.surveyService.create(survey);
+    }  
+
+    @Mutation(() => Survey)
     async deleteSurvey(@Args('id', { type: () => Int }) id: number) {
       await this.surveyService.delete(id);
     } 
@@ -21,10 +26,6 @@ export class SurveyResolver {
     @Query(() => Survey)
     async getSurvey(@Args('id', { type: () => Int }) id: number) {
         return this.surveyService.findById(id);
-    }    
-
-    @ResolveField()
-    async getQuestions(@Args('id', { type: () => Int }) id:number) {
-        return await this.surveyService.getQuestions(id);
     }
+
 }
