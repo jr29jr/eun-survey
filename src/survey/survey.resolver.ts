@@ -13,9 +13,14 @@ export class SurveyResolver {
       return await this.surveyService.create(createSurveyInput);
     }  
 
+    @Mutation(() => Survey)
+    async deleteSurvey(@Args('id', { type: () => Int }) id: number) {
+      return await this.surveyService.delete(id);
+    } 
+
     @Query(() => Survey)
     async getSurvey(@Args('id', { type: () => Int }) id: number) {
         return this.surveyService.findById(id);
-    }
+    }    
 
 }
