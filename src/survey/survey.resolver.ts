@@ -14,7 +14,7 @@ export class SurveyResolver {
     }  
 
     @Mutation(() => Survey)
-    async updateSurvey(@Args("survey") survey: Survey) {
+    async updateSurvey(@Args("survey") survey: CreateSurveyInput) {
       return await this.surveyService.create(survey);
     }  
 

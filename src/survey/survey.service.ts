@@ -4,6 +4,7 @@ import { Question } from 'src/question/entity/question.entitiy';
 import { Repository } from 'typeorm';
 import { Survey } from './entity/survey.entity';
 import { CreateSurveyInput } from './survey.createSurveyInput.input';
+import { UpdateSUrveyInput } from './survey.updateSurveyInput.input';
 
 @Injectable()
 export class SurveyService {
@@ -18,7 +19,6 @@ export class SurveyService {
     findById(id: number): Promise<Survey> {
     //findOne(id)를 아래처럼 바꿔라
         const survey=this.surveyRepository.findOneBy({id});
-        this.getQuestions(id);
         return this.surveyRepository.findOneBy({id});
     }  
 
@@ -30,7 +30,7 @@ export class SurveyService {
         return await this.surveyRepository.save(survey);
     }
 
-    async update(survey: Survey): Promise<Survey> {
+    async update(survey: UpdateSUrveyInput): Promise<Survey> {
         return await this.surveyRepository.save(survey);
     }
 

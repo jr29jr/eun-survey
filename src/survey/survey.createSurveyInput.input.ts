@@ -4,5 +4,4 @@ import { Field, InputType } from "@nestjs/graphql";
 export class CreateSurveyInput {
   @Field()
   title: string;
-
 }
