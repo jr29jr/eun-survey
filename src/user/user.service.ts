@@ -14,7 +14,7 @@ export class UserService {
   findById(id: number): Promise<User> {
     //findOne(id)를 아래처럼 바꿔라
     return this.userRepository.findOneBy({id});
-  }
+  }  
 
   async create(user: CreateUserInput): Promise<User> {
     return await this.userRepository.save(user);
