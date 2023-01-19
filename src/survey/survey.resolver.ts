@@ -1,4 +1,5 @@
-import { Resolver,Mutation,Args } from '@nestjs/graphql';
+import { Resolver,Mutation,Args,Query } from '@nestjs/graphql';
+import { Int } from 'type-graphql';
 import { Survey } from './entity/survey.entity';
 import { CreateSurveyInput } from './survey.createSurveyInput.input';
 import { SurveyService } from './survey.service';
@@ -9,6 +10,12 @@ export class SurveyResolver {
 
     @Mutation(() => Survey)
     async createUser(@Args("inputList") createSurveyInput: CreateSurveyInput) {
-      return await this.surveyService.createSurvey(createSurveyInput);
-    }   
+      return await this.surveyService.create(createSurveyInput);
+    }  
+
+    @Query(() => Survey)
+    async getSurvey(@Args('id', { type: () => Int }) id: number) {
+        return this.surveyService.findById(id);
+    }
+
 }

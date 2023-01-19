@@ -11,6 +11,11 @@ export class SurveyService {
         private userRepository: Repository<Survey>,
       ) {}
     
+    findById(id: number): Promise<Survey> {
+    //findOne(id)를 아래처럼 바꿔라
+    return this.userRepository.findOneBy({id});
+    }  
+
     async create(survey: CreateSurveyInput): Promise<Survey> {
         return await this.userRepository.save(survey);
     }
