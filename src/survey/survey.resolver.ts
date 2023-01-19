@@ -1,4 +1,4 @@
-import { Resolver,Mutation,Args,Query } from '@nestjs/graphql';
+import { Resolver,Mutation,Args,Query, ResolveField } from '@nestjs/graphql';
 import { Int } from 'type-graphql';
 import { Survey } from './entity/survey.entity';
 import { CreateSurveyInput } from './survey.createSurveyInput.input';
@@ -23,4 +23,8 @@ export class SurveyResolver {
         return this.surveyService.findById(id);
     }    
 
+    @ResolveField()
+    async getQuestions(@Args('id', { type: () => Int }) id:number) {
+        return await this.surveyService.getQuestions(id);
+    }
 }
