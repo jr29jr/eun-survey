@@ -9,7 +9,7 @@ export class SurveyResolver {
     constructor(private readonly surveyService: SurveyService) {}
 
     @Mutation(() => Survey)
-    async createUser(@Args("inputList") createSurveyInput: CreateSurveyInput) {
+    async createSurvey(@Args("inputList") createSurveyInput: CreateSurveyInput) {
       return await this.surveyService.create(createSurveyInput);
     }  
 
