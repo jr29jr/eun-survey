@@ -11,7 +11,7 @@ export class SurveyService {
         private userRepository: Repository<Survey>,
       ) {}
     
-    async createSurvey(survey: CreateSurveyInput): Promise<Survey> {
+    async create(survey: CreateSurveyInput): Promise<Survey> {
         return await this.userRepository.save(survey);
     }
 }
