@@ -19,12 +19,12 @@ export class UserSurveyResolver {
   }
 
   @Query(() => [UserSurvey])
-  async getServeysByUserId(@Args('id', { type: () => Int }) id: number) {
+  async getSurveysByUserId(@Args('id', { type: () => Int }) id: number) {
     return await this.userSurveyService.findByUserId(id);
   }
 
   @Query(() => [UserSurvey])
-  async getServeysBySurveyId(@Args('id', { type: () => Int }) id: number) {
+  async getSurveysBySurveyId(@Args('id', { type: () => Int }) id: number) {
     return await this.userSurveyService.findBySurveyId(id);
   }
 

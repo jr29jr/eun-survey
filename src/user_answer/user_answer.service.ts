@@ -23,6 +23,13 @@ export class UserAnswerService {
     return result;
   }
 
+  async findByUserId(id: number) {
+    const result=await this.userAnswerRepository.find({where : {user_id : id}});
+    //없는 id접근하는 경우 처리하자
+
+    return result;
+  }
+
   async update(id: number, updateUserAnswerInput: UpdateUserAnswerInput) {
     const result=await this.userAnswerRepository.update(id,updateUserAnswerInput);
     if(result.affected === 0)

@@ -19,6 +19,10 @@ export class UserAnswerResolver {
     return await this.userAnswerService.findOne(id);
   }
 
+  @Query(() => [UserAnswer])
+  async getAnswersByUserId(@Args('id', { type: () => Int }) id: number) {
+    return await this.userAnswerService.findByUserId(id);
+  }
   @Mutation(() => UserAnswer)
   async updateUserAnswer(@Args('updateUserAnswerInput') updateUserAnswerInput: UpdateUserAnswerInput) {
     return await this.userAnswerService.update(updateUserAnswerInput.id, updateUserAnswerInput);

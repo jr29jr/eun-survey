@@ -46,6 +46,8 @@ type Query {
   getOptionsByQuestionId(id: Int!): [Option!]!
   getOption(id: Int!): Option!
   getUesrServey(id: Int!): UserSurvey!
+  getSurveysByUserId(id: Int!): [UserSurvey!]!
+  getSurveysBySurveyId(id: Int!): [UserSurvey!]!
   getUserAnswer(id: Int!): UserAnswer!
 }
 
