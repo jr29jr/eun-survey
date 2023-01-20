@@ -20,7 +20,7 @@ export class SurveyService {
     async create(survey: CreateSurveyInput): Promise<Survey> {
         return await this.surveyRepository.save(survey);
     }
-    
+
     async findOne(id: number): Promise<Survey> {
         //findOne(id)를 아래처럼 바꿔라
         const result=await this.surveyRepository.findOneBy({id});
@@ -32,7 +32,7 @@ export class SurveyService {
     async findAll(){
         return await this.surveyRepository.find();
     }
-
+    
     async update(id:number,survey: UpdateSurveyInput) {
         const result=await this.surveyRepository.update(id,survey);
         if(result.affected === 0)

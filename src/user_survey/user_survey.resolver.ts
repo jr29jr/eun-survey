@@ -18,6 +18,16 @@ export class UserSurveyResolver {
     return await this.userSurveyService.findOne(id);
   }
 
+  @Query(() => [UserSurvey])
+  async getServeysByUserId(@Args('id', { type: () => Int }) id: number) {
+    return await this.userSurveyService.findByUserId(id);
+  }
+
+  @Query(() => [UserSurvey])
+  async getServeysBySurveyId(@Args('id', { type: () => Int }) id: number) {
+    return await this.userSurveyService.findBySurveyId(id);
+  }
+
   @Mutation(() => UserSurvey)
   async updateUserSurvey(@Args('updateUserSurveyInput') updateUserSurveyInput: UpdateUserSurveyInput) {
     return await this.userSurveyService.update(updateUserSurveyInput.id, updateUserSurveyInput);
@@ -27,4 +37,6 @@ export class UserSurveyResolver {
   async removeUserSurvey(@Args('id', { type: () => Int }) id: number) {
     return await this.userSurveyService.remove(id);
   }
+
+
 }

@@ -23,6 +23,20 @@ export class UserSurveyService {
     return result;
   }
 
+  async findByUserId(id: number) {
+    const result=await this.userServeyRepository.find({where : {user_id : id}});
+    //없는 id접근하는 경우 처리하자
+    
+    return result;
+  }
+
+  async findBySurveyId(id: number) {
+    const result=await this.userServeyRepository.find({where : {survey_id : id}});
+    //없는 id접근하는 경우 처리하자
+    
+    return result;
+  }
+
   async update(id: number, updateUserSurveyInput: UpdateUserSurveyInput) {
     const result=await this.userServeyRepository.update(id,updateUserSurveyInput);
     if(result.affected === 0)
