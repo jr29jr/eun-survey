@@ -49,6 +49,7 @@ type Query {
   getSurveysByUserId(id: Int!): [UserSurvey!]!
   getSurveysBySurveyId(id: Int!): [UserSurvey!]!
   getUserAnswer(id: Int!): UserAnswer!
+  getAnswersByUserId(id: Int!): [UserAnswer!]!
 }
 
 type Mutation {
