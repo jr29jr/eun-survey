@@ -9,27 +9,23 @@ export class UserAnswerResolver {
   constructor(private readonly userAnswerService: UserAnswerService) {}
 
   @Mutation(() => UserAnswer)
-  createUserAnswer(@Args('createUserAnswerInput') createUserAnswerInput: CreateUserAnswerInput) {
-    return this.userAnswerService.create(createUserAnswerInput);
+  async createUserAnswer(@Args('createUserAnswerInput') createUserAnswerInput: CreateUserAnswerInput) {
+    return await this.userAnswerService.create(createUserAnswerInput);
   }
 
-  @Query(() => [UserAnswer], { name: 'userAnswer' })
-  findAll() {
-    return this.userAnswerService.findAll();
-  }
 
-  @Query(() => UserAnswer, { name: 'userAnswer' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
-    return this.userAnswerService.findOne(id);
+  @Query(() => UserAnswer)
+  async getUserAnswer(@Args('id', { type: () => Int }) id: number) {
+    return await this.userAnswerService.findOne(id);
   }
 
   @Mutation(() => UserAnswer)
-  updateUserAnswer(@Args('updateUserAnswerInput') updateUserAnswerInput: UpdateUserAnswerInput) {
-    return this.userAnswerService.update(updateUserAnswerInput.id, updateUserAnswerInput);
+  async updateUserAnswer(@Args('updateUserAnswerInput') updateUserAnswerInput: UpdateUserAnswerInput) {
+    return await this.userAnswerService.update(updateUserAnswerInput.id, updateUserAnswerInput);
   }
 
   @Mutation(() => UserAnswer)
-  removeUserAnswer(@Args('id', { type: () => Int }) id: number) {
-    return this.userAnswerService.remove(id);
+  async removeUserAnswer(@Args('id', { type: () => Int }) id: number) {
+    return await this.userAnswerService.remove(id);
   }
 }
