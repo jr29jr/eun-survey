@@ -27,7 +27,7 @@ export class UserService {
     if(result.affected === 0)
         throw new NotFoundException();
     return this.surveyRepository.findOneBy({id});
-}
+  }
 
   async remove(id: number) {
     //정상적인 상황에서도 오류띄우는데 어케 해결하냐

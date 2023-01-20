@@ -5,6 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { SurveyModule } from './survey/survey.module';
 import { Survey } from './survey/entity/survey.entity';
 import { UserModule } from './user/user.module';
+import { User } from './user/entities/user.entity';
 
 
 @Module({
@@ -18,7 +19,7 @@ import { UserModule } from './user/user.module';
     "username": "postgres",
     "password": "1234",
     "database": "food_survey",
-    "entities": [Survey,'dist/**/*.entity.{ts,js}'],
+    "entities": [Survey,User,'dist/**/*.entity.{ts,js}'],
     "synchronize": false
   }),SurveyModule, UserModule],
   controllers: [],

@@ -8,8 +8,8 @@ type Survey {
 }
 
 type User {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  id: Int!
+  nickname: String!
 }
 
 type Query {
@@ -36,12 +36,10 @@ input UpdateSurveyInput {
 }
 
 input CreateUserInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  nickname: String!
 }
 
 input UpdateUserInput {
-  """Example field (placeholder)"""
-  exampleField: Int
+  nickname: String!
   id: Int!
 }
