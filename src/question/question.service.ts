@@ -24,6 +24,13 @@ export class QuestionService {
     return result;  
   }
 
+  async findBySurveyId(id: number) : Promise<Question[]>  {
+    //findOne(id)를 아래처럼 바꿔라
+    const result=await this.questionRepository.find({where : {survey_id : id}});
+    //없는 방에 접근하면 오류 처리해야한다.방법을 모르겠네?..
+    return result;  
+  }
+
   async update(id: number, updateQuestionInput: UpdateQuestionInput) {
     const result=await this.questionRepository.update(id,updateQuestionInput);
     if(result.affected === 0)
@@ -39,4 +46,5 @@ export class QuestionService {
         throw new NotFoundException();
     return null;
   }
+
 }

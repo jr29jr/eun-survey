@@ -18,6 +18,11 @@ export class QuestionResolver {
     return await this.questionService.findOne(id);
   }
 
+  @Query(() => [Question])
+  async getQuestions(@Args('id', { type: () => Int }) id: number) {
+    return await this.questionService.findBySurveyId(id);
+  }
+
   @Mutation(() => Question)
   async updateQuestion(@Args('updateQuestionInput') updateQuestionInput: UpdateQuestionInput) {
     return await this.questionService.update(updateQuestionInput.id, updateQuestionInput);
