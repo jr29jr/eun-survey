@@ -13,6 +13,10 @@ export class OptionResolver {
     return await this.optionService.create(createOptionInput);
   }
 
+  @Query(() => [Option])
+  async getOptionsByQuestionId(@Args('id', { type: () => Int }) id: number) {
+    return await this.optionService.findByQuestionId(id);
+  }
 
   @Query(() => Option)
   async getOption(@Args('id', { type: () => Int }) id: number) {

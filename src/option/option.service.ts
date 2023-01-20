@@ -23,6 +23,11 @@ export class OptionService {
     return result
   }
 
+  async findByQuestionId(id : number){
+    const result=await this.optionRepository.find({where : {question_id : id}});
+    //없는 id접근하는 경우 처리하자
+    return result
+  }
   async update(id: number, updateOptionInput: UpdateOptionInput) {
     const result=await this.optionRepository.update(id,updateOptionInput);
     if(result.affected === 0)
@@ -38,4 +43,6 @@ export class OptionService {
         throw new NotFoundException();
     return null;  
   }
+
+  
 }
