@@ -12,9 +12,16 @@ type User {
   nickname: String!
 }
 
+type Question {
+  id: Int!
+  content: String!
+  survey_id: Int!
+}
+
 type Query {
   getSurvey(id: Int!): Survey!
   getUser(id: Int!): User!
+  getQuestion(id: Int!): Question!
 }
 
 type Mutation {
@@ -24,6 +31,9 @@ type Mutation {
   createUser(createUserInput: CreateUserInput!): User!
   updateUser(updateUserInput: UpdateUserInput!): User!
   removeUser(id: Int!): User!
+  createQuestion(createQuestionInput: CreateQuestionInput!): Question!
+  updateQuestion(updateQuestionInput: UpdateQuestionInput!): Question!
+  removeQuestion(id: Int!): Question!
 }
 
 input CreateSurveyInput {
@@ -41,5 +51,16 @@ input CreateUserInput {
 
 input UpdateUserInput {
   nickname: String!
+  id: Int!
+}
+
+input CreateQuestionInput {
+  content: String!
+  survey_id: Int!
+}
+
+input UpdateQuestionInput {
+  content: String!
+  survey_id: Int!
   id: Int!
 }
