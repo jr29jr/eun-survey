@@ -26,6 +26,6 @@ export class SurveyResolver {
 
     @Query(() => Survey)
     async getSurvey(@Args('id', { type: () => Int }) id: number) {
-        return this.surveyService.findOne(id);
+        return await this.surveyService.findOne(id);
     }
 }

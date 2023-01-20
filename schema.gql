@@ -14,7 +14,7 @@ type User {
 
 type Query {
   getSurvey(id: Int!): Survey!
-  user(id: Int!): User!
+  getUser(id: Int!): User!
 }
 
 type Mutation {

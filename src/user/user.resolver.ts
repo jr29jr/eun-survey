@@ -9,23 +9,24 @@ export class UserResolver {
   constructor(private readonly userService: UserService) {}
 
   @Mutation(() => User)
-  createUser(@Args('createUserInput') createUserInput: CreateUserInput) {
-    return this.userService.create(createUserInput);
+  async createUser(@Args('createUserInput') createUserInput: CreateUserInput) {
+    return await this.userService.create(createUserInput);
   }
 
-
-  @Query(() => User, { name: 'user' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
-    return this.userService.findOne(id);
-  }
-
-  @Mutation(() => User)
-  updateUser(@Args('updateUserInput') updateUserInput: UpdateUserInput) {
-    return this.userService.update(updateUserInput.id, updateUserInput);
+  //함수명말고 user로 쓰고싶으면 naming 하는거다
+  //@Query(() => User, { name: 'user' })
+  @Query(() => User)
+  async getUser(@Args('id', { type: () => Int }) id: number) {
+    return await this.userService.findOne(id);
   }
 
   @Mutation(() => User)
-  removeUser(@Args('id', { type: () => Int }) id: number) {
-    return this.userService.remove(id);
+  async updateUser(@Args('updateUserInput') updateUserInput: UpdateUserInput) {
+    return await this.userService.update(updateUserInput.id, updateUserInput);
+  }
+
+  @Mutation(() => User)
+  async removeUser(@Args('id', { type: () => Int }) id: number) {
+    return await this.userService.remove(id);
   }
 }
