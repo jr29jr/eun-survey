@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { CreateSurveyInput } from './dto/create-survey.input';
 import { Survey } from './entity/survey.entity';
-import { CreateSurveyInput } from './survey.createSurveyInput.input';
-import { UpdateSUrveyInput } from './update-survey.input';
+import { UpdateSUrveyInput } from './dto/update-survey.input';
 
 @Injectable()
 export class SurveyService {

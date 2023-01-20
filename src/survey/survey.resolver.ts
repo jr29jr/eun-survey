@@ -1,9 +1,9 @@
 import { Resolver,Mutation,Args,Query, ResolveField } from '@nestjs/graphql';
 import { Int } from 'type-graphql';
+import { CreateSurveyInput } from './dto/create-survey.input';
 import { Survey } from './entity/survey.entity';
-import { CreateSurveyInput } from './survey.createSurveyInput.input';
 import { SurveyService } from './survey.service';
-import { UpdateSUrveyInput } from './update-survey.input';
+import { UpdateSUrveyInput } from './dto/update-survey.input';
 
 @Resolver()
 export class SurveyResolver {
