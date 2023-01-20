@@ -19,7 +19,7 @@ export class UserService {
   async findOne(id: number) :Promise<User>{
     const result=await this.userRepository.findOneBy({id});
     //없는 id접근하는 경우 처리하자
-
+    
     return result
   }
 

@@ -6,6 +6,7 @@ import { SurveyModule } from './survey/survey.module';
 import { Survey } from './survey/entity/survey.entity';
 import { UserModule } from './user/user.module';
 import { User } from './user/entities/user.entity';
+import { QuestionModule } from './question/question.module';
 
 
 @Module({
@@ -21,7 +22,7 @@ import { User } from './user/entities/user.entity';
     "database": "food_survey",
     "entities": [Survey,User,'dist/**/*.entity.{ts,js}'],
     "synchronize": false
-  }),SurveyModule, UserModule],
+  }),SurveyModule, UserModule, QuestionModule],
   controllers: [],
   providers: []
 })
