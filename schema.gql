@@ -36,7 +36,7 @@ type Mutation {
   createUser(inputList: CreateUserInput!): User!
   createOption(createOptionInput: CreateOptionInput!): Option!
   createSurvey(inputList: CreateSurveyInput!): Survey!
-  updateSurvey(survey: CreateSurveyInput!): Survey!
+  updateSurvey(updateInfo: UpdateSUrveyInput!): Survey!
   deleteSurvey(id: Int!): Survey!
   createQuestion(createQuestionInput: CreateQuestionInput!): Question!
 }
@@ -52,6 +52,11 @@ input CreateOptionInput {
 }
 
 input CreateSurveyInput {
+  title: String!
+}
+
+input UpdateSUrveyInput {
+  id: Float!
   title: String!
 }
 
