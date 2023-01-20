@@ -28,4 +28,9 @@ export class SurveyResolver {
     async getSurvey(@Args('id', { type: () => Int }) id: number) {
         return await this.surveyService.findOne(id);
     }
+
+    @Query(() => [Survey])
+    async getAll(){
+        return await this.surveyService.findAll();
+    }
 }

@@ -4,17 +4,23 @@ import { Repository } from 'typeorm';
 import { CreateSurveyInput } from './dto/create-survey.input';
 import { Survey } from './entity/survey.entity';
 import { UpdateSurveyInput } from './dto/update-survey.input';
+import { Question } from 'src/question/entities/question.entity';
 
 @Injectable()
 export class SurveyService {
     constructor(
         @InjectRepository(Survey)
         private surveyRepository: Repository<Survey>,
+
+        @InjectRepository(Question)
+        private questionRepository: Repository<Question>,
+
       ) {}
     
     async create(survey: CreateSurveyInput): Promise<Survey> {
         return await this.surveyRepository.save(survey);
     }
+    
     async findOne(id: number): Promise<Survey> {
         //findOne(id)를 아래처럼 바꿔라
         const result=await this.surveyRepository.findOneBy({id});
@@ -23,7 +29,9 @@ export class SurveyService {
         return result;
     }  
 
-    
+    async findAll(){
+        return await this.surveyRepository.find();
+    }
 
     async update(id:number,survey: UpdateSurveyInput) {
         const result=await this.surveyRepository.update(id,survey);
@@ -40,5 +48,4 @@ export class SurveyService {
             throw new NotFoundException();
         return null;
     }
-    
 }

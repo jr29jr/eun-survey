@@ -7,15 +7,15 @@ type Survey {
   title: String!
 }
 
-type User {
-  id: Int!
-  nickname: String!
-}
-
 type Question {
   id: Int!
   content: String!
   survey_id: Int!
+}
+
+type User {
+  id: Int!
+  nickname: String!
 }
 
 type Option {
@@ -31,30 +31,43 @@ type UserSurvey {
   survey_id: Int!
 }
 
+type UserAnswer {
+  id: Int!
+  user_id: Int!
+  option_id: Int!
+}
+
 type Query {
   getSurvey(id: Int!): Survey!
-  getUser(id: Int!): User!
+  getAll: [Survey!]!
   getQuestion(id: Int!): Question!
+  getQuestions(id: Int!): [Question!]!
+  getUser(id: Int!): User!
+  getOptionsByQuestionId(id: Int!): [Option!]!
   getOption(id: Int!): Option!
   getUesrServey(id: Int!): UserSurvey!
+  getUserAnswer(id: Int!): UserAnswer!
 }
 
 type Mutation {
   createSurvey(inputList: CreateSurveyInput!): Survey!
   updateSurvey(updateInfo: UpdateSurveyInput!): Survey!
   removeSurvey(id: Int!): Survey!
-  createUser(createUserInput: CreateUserInput!): User!
-  updateUser(updateUserInput: UpdateUserInput!): User!
-  removeUser(id: Int!): User!
   createQuestion(createQuestionInput: CreateQuestionInput!): Question!
   updateQuestion(updateQuestionInput: UpdateQuestionInput!): Question!
   removeQuestion(id: Int!): Question!
+  createUser(createUserInput: CreateUserInput!): User!
+  updateUser(updateUserInput: UpdateUserInput!): User!
+  removeUser(id: Int!): User!
   createOption(createOptionInput: CreateOptionInput!): Option!
   updateOption(updateOptionInput: UpdateOptionInput!): Option!
   removeOption(id: Int!): Option!
   createUserSurvey(createUserSurveyInput: CreateUserSurveyInput!): UserSurvey!
   updateUserSurvey(updateUserSurveyInput: UpdateUserSurveyInput!): UserSurvey!
   removeUserSurvey(id: Int!): UserSurvey!
+  createUserAnswer(createUserAnswerInput: CreateUserAnswerInput!): UserAnswer!
+  updateUserAnswer(updateUserAnswerInput: UpdateUserAnswerInput!): UserAnswer!
+  removeUserAnswer(id: Int!): UserAnswer!
 }
 
 input CreateSurveyInput {
@@ -66,15 +79,6 @@ input UpdateSurveyInput {
   title: String!
 }
 
-input CreateUserInput {
-  nickname: String!
-}
-
-input UpdateUserInput {
-  nickname: String!
-  id: Int!
-}
-
 input CreateQuestionInput {
   content: String!
   survey_id: Int!
@@ -83,6 +87,15 @@ input CreateQuestionInput {
 input UpdateQuestionInput {
   content: String!
   survey_id: Int!
+  id: Int!
+}
+
+input CreateUserInput {
+  nickname: String!
+}
+
+input UpdateUserInput {
+  nickname: String!
   id: Int!
 }
 
@@ -107,5 +120,16 @@ input CreateUserSurveyInput {
 input UpdateUserSurveyInput {
   user_id: Int!
   survey_id: Int!
+  id: Int!
+}
+
+input CreateUserAnswerInput {
+  user_id: Int!
+  option_id: Int!
+}
+
+input UpdateUserAnswerInput {
+  user_id: Int!
+  option_id: Int!
   id: Int!
 }
