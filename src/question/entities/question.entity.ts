@@ -7,7 +7,7 @@ export class Question {
 
   @Field(() => Int)
   @PrimaryGeneratedColumn()
-  exampleField: number;
+  id: number;
 
   @Field(() => String)
   @Column()
