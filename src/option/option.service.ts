@@ -1,26 +1,41 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { CreateOptionInput } from './dto/create-option.input';
 import { UpdateOptionInput } from './dto/update-option.input';
+import { Option } from './entities/option.entity';
 
 @Injectable()
 export class OptionService {
-  create(createOptionInput: CreateOptionInput) {
-    return 'This action adds a new option';
+  constructor(
+    @InjectRepository(Option)
+    private optionRepository: Repository<Option>,
+  ) {}
+  
+  async create(createOptionInput: CreateOptionInput) {
+    return await this.optionRepository.save(createOptionInput);
   }
 
-  findAll() {
-    return `This action returns all option`;
+  async findOne(id: number) {
+    const result=await this.optionRepository.findOneBy({id});
+    //없는 id접근하는 경우 처리하자
+    
+    return result
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} option`;
+  async update(id: number, updateOptionInput: UpdateOptionInput) {
+    const result=await this.optionRepository.update(id,updateOptionInput);
+    if(result.affected === 0)
+        throw new NotFoundException();
+    return this.optionRepository.findOneBy({id});
   }
 
-  update(id: number, updateOptionInput: UpdateOptionInput) {
-    return `This action updates a #${id} option`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} option`;
+  async remove(id: number) {
+    //정상적인 상황에서도 null 리턴하는거 처리해야한다.
+    const result = await this.optionRepository.delete(id);
+    console.log(result);
+    if(result.affected === 0)
+        throw new NotFoundException();
+    return null;  
   }
 }
