@@ -20,7 +20,7 @@ type Query {
 type Mutation {
   createSurvey(inputList: CreateSurveyInput!): Survey!
   updateSurvey(updateInfo: UpdateSurveyInput!): Survey!
-  removeSurvey(id: Int!): String!
+  removeSurvey(id: Int!): Survey!
   createUser(createUserInput: CreateUserInput!): User!
   updateUser(updateUserInput: UpdateUserInput!): User!
   removeUser(id: Int!): User!

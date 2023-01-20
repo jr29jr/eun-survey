@@ -13,8 +13,11 @@ export class SurveyService {
       ) {}
     
     findById(id: number): Promise<Survey> {
-    //findOne(id)를 아래처럼 바꿔라
-        return this.surveyRepository.findOneBy({id});
+        //findOne(id)를 아래처럼 바꿔라
+        const result=this.surveyRepository.findOneBy({id});
+        //없는 방에 접근하면 오류 처리해야한다.방법을 모르겠네?..
+        
+        return result;
     }  
 
     async create(survey: CreateSurveyInput): Promise<Survey> {
@@ -29,11 +32,12 @@ export class SurveyService {
     }
 
     async delete(id :number){
+        //정상적인 상황에서도 오류띄우는데 어케 해결하냐
         const result = await this.surveyRepository.delete(id);
         console.log(result);
         if(result.affected === 0)
             throw new NotFoundException();
-        return "success";
+        return null;
     }
     
 }

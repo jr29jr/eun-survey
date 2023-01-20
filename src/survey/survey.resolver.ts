@@ -19,7 +19,7 @@ export class SurveyResolver {
       return await this.surveyService.update(updateInfo.id,updateInfo);
     }  
 
-    @Mutation(() => String)
+    @Mutation(() => Survey)
     async removeSurvey(@Args('id', { type: () => Int }) id: number) {
       return await this.surveyService.delete(id);
     } 
