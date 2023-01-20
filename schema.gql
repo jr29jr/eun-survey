@@ -2,65 +2,46 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type User {
-  id: Int!
-  nickname: String
-}
-
-type Option {
-  id: Int!
-  score: Int!
-  content: String!
-  question_id: Int!
-}
-
-type Question {
-  id: Int!
-  content: String!
-  survey_id: Int!
-  options: [Option!]!
-}
-
 type Survey {
   id: Int!
   title: String!
-  questions: [Question!]!
+}
+
+type User {
+  """Example field (placeholder)"""
+  exampleField: Int!
 }
 
 type Query {
-  getUser(id: Int!): User!
   getSurvey(id: Int!): Survey!
+  user(id: Int!): User!
 }
 
 type Mutation {
-  createUser(inputList: CreateUserInput!): User!
-  createOption(createOptionInput: CreateOptionInput!): Option!
   createSurvey(inputList: CreateSurveyInput!): Survey!
-  updateSurvey(updateInfo: UpdateSUrveyInput!): Survey!
-  deleteSurvey(id: Int!): Survey!
-  createQuestion(createQuestionInput: CreateQuestionInput!): Question!
-}
-
-input CreateUserInput {
-  nickname: String!
-}
-
-input CreateOptionInput {
-  score: Float!
-  content: String!
-  question_id: Float!
+  updateSurvey(updateInfo: UpdateSurveyInput!): Survey!
+  removeSurvey(id: Int!): String!
+  createUser(createUserInput: CreateUserInput!): User!
+  updateUser(updateUserInput: UpdateUserInput!): User!
+  removeUser(id: Int!): User!
 }
 
 input CreateSurveyInput {
   title: String!
 }
 
-input UpdateSUrveyInput {
+input UpdateSurveyInput {
   id: Float!
   title: String!
 }
 
-input CreateQuestionInput {
-  content: String!
-  survey_id: Float!
+input CreateUserInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateUserInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
 }

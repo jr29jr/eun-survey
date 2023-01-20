@@ -2,14 +2,9 @@ import { ApolloDriver,ApolloDriverConfig } from '@nestjs/apollo';
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from './user/entity/user.entitiy';
-import { UserModule } from './user/user.module';
-import { OptionModule } from './option/option.module';
 import { SurveyModule } from './survey/survey.module';
-import { QuestionModule } from './question/question.module';
-import { Option } from './option/entity/option.entity';
-import { Question } from './question/entity/question.entitiy';
 import { Survey } from './survey/entity/survey.entity';
+import { UserModule } from './user/user.module';
 
 
 @Module({
@@ -23,9 +18,9 @@ import { Survey } from './survey/entity/survey.entity';
     "username": "postgres",
     "password": "1234",
     "database": "food_survey",
-    "entities": [User,Option,Question,Survey,'dist/**/*.entity.{ts,js}'],
+    "entities": [Survey,'dist/**/*.entity.{ts,js}'],
     "synchronize": false
-  }), UserModule, OptionModule, SurveyModule, QuestionModule],
+  }),SurveyModule, UserModule],
   controllers: [],
   providers: []
 })

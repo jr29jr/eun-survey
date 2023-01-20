@@ -1,9 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateSurveyInput } from './dto/create-survey.input';
 import { Survey } from './entity/survey.entity';
-import { UpdateSUrveyInput } from './dto/update-survey.input';
+import { UpdateSurveyInput } from './dto/update-survey.input';
 
 @Injectable()
 export class SurveyService {
@@ -21,13 +21,19 @@ export class SurveyService {
         return await this.surveyRepository.save(survey);
     }
 
-    async update(id:number,survey: UpdateSUrveyInput): Promise<Survey> {
-        return await this.surveyRepository.save(survey);
+    async update(id:number,survey: UpdateSurveyInput) {
+        const result=await this.surveyRepository.update(id,survey);
+        if(result.affected === 0)
+            throw new NotFoundException();
+        return this.surveyRepository.findOneBy({id});
     }
 
     async delete(id :number){
-
-        await this.surveyRepository.delete(id);
+        const result = await this.surveyRepository.delete(id);
+        console.log(result);
+        if(result.affected === 0)
+            throw new NotFoundException();
+        return "success";
     }
     
 }

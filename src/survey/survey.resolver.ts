@@ -3,7 +3,7 @@ import { Int } from 'type-graphql';
 import { CreateSurveyInput } from './dto/create-survey.input';
 import { Survey } from './entity/survey.entity';
 import { SurveyService } from './survey.service';
-import { UpdateSUrveyInput } from './dto/update-survey.input';
+import { UpdateSurveyInput } from './dto/update-survey.input';
 
 @Resolver()
 export class SurveyResolver {
@@ -15,19 +15,17 @@ export class SurveyResolver {
     }  
 
     @Mutation(() => Survey)
-    async updateSurvey(@Args("updateInfo") updateInfo: UpdateSUrveyInput) {
+    async updateSurvey(@Args("updateInfo") updateInfo: UpdateSurveyInput) {
       return await this.surveyService.update(updateInfo.id,updateInfo);
     }  
 
-    @Mutation(() => Survey)
-    async deleteSurvey(@Args('id', { type: () => Int }) id: number) {
-      await this.surveyService.delete(id);
-
+    @Mutation(() => String)
+    async removeSurvey(@Args('id', { type: () => Int }) id: number) {
+      return await this.surveyService.delete(id);
     } 
 
     @Query(() => Survey)
     async getSurvey(@Args('id', { type: () => Int }) id: number) {
         return this.surveyService.findById(id);
     }
-
 }
