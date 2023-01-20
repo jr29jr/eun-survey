@@ -25,11 +25,18 @@ type Option {
   score: Int!
 }
 
+type UserSurvey {
+  id: Int!
+  user_id: Int!
+  survey_id: Int!
+}
+
 type Query {
   getSurvey(id: Int!): Survey!
   getUser(id: Int!): User!
   getQuestion(id: Int!): Question!
   getOption(id: Int!): Option!
+  getUesrServey(id: Int!): UserSurvey!
 }
 
 type Mutation {
@@ -45,6 +52,9 @@ type Mutation {
   createOption(createOptionInput: CreateOptionInput!): Option!
   updateOption(updateOptionInput: UpdateOptionInput!): Option!
   removeOption(id: Int!): Option!
+  createUserSurvey(createUserSurveyInput: CreateUserSurveyInput!): UserSurvey!
+  updateUserSurvey(updateUserSurveyInput: UpdateUserSurveyInput!): UserSurvey!
+  removeUserSurvey(id: Int!): UserSurvey!
 }
 
 input CreateSurveyInput {
@@ -86,5 +96,16 @@ input UpdateOptionInput {
   question_id: Int!
   content: String!
   score: Int!
+  id: Int!
+}
+
+input CreateUserSurveyInput {
+  user_id: Int!
+  survey_id: Int!
+}
+
+input UpdateUserSurveyInput {
+  user_id: Int!
+  survey_id: Int!
   id: Int!
 }

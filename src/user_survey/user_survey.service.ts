@@ -14,7 +14,6 @@ export class UserSurveyService {
   
   async create(createUserSurveyInput: CreateUserSurveyInput) {
     return await this.userServeyRepository.save(createUserSurveyInput);
-
   }
 
   async findOne(id: number) {
