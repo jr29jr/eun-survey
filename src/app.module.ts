@@ -10,6 +10,8 @@ import { QuestionModule } from './question/question.module';
 import { Question } from './question/entities/question.entity';
 import { OptionModule } from './option/option.module';
 import { Option } from './option/entities/option.entity';
+import { UserSurveyModule } from './user_survey/user_survey.module';
+import { UserSurvey } from './user_survey/entities/user_survey.entity';
 
 
 @Module({
@@ -23,9 +25,9 @@ import { Option } from './option/entities/option.entity';
     "username": "postgres",
     "password": "1234",
     "database": "food_survey",
-    "entities": [Survey,User,Question,Option,'dist/**/*.entity.{ts,js}'],
+    "entities": [Survey,User,Question,Option,UserSurvey,'dist/**/*.entity.{ts,js}'],
     "synchronize": false
-  }),SurveyModule, UserModule, QuestionModule, OptionModule],
+  }),SurveyModule, UserModule, QuestionModule, OptionModule, UserSurveyModule],
   controllers: [],
   providers: []
 })
