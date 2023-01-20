@@ -12,6 +12,9 @@ export class SurveyService {
         private surveyRepository: Repository<Survey>,
       ) {}
     
+    async create(survey: CreateSurveyInput): Promise<Survey> {
+        return await this.surveyRepository.save(survey);
+    }
     findOne(id: number): Promise<Survey> {
         //findOne(id)를 아래처럼 바꿔라
         const result=this.surveyRepository.findOneBy({id});
@@ -20,9 +23,7 @@ export class SurveyService {
         return result;
     }  
 
-    async create(survey: CreateSurveyInput): Promise<Survey> {
-        return await this.surveyRepository.save(survey);
-    }
+    
 
     async update(id:number,survey: UpdateSurveyInput) {
         const result=await this.surveyRepository.update(id,survey);

@@ -1,26 +1,40 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { CreateUserInput } from './dto/create-user.input';
 import { UpdateUserInput } from './dto/update-user.input';
+import { User } from './entities/user.entity';
 
 @Injectable()
 export class UserService {
-  create(createUserInput: CreateUserInput) {
-    return 'This action adds a new user';
-  }
+  constructor(
+    @InjectRepository(User)
+    private surveyRepository: Repository<User>,
+  ) {}
 
-  findAll() {
-    return `This action returns all user`;
+  create(createUserInput: CreateUserInput) {
+    return this.surveyRepository.save(createUserInput);
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} user`;
+    const result=this.surveyRepository.findOneBy({id});
+    //없는 id접근하는 경우 처리하자/
+    return result
   }
 
-  update(id: number, updateUserInput: UpdateUserInput) {
-    return `This action updates a #${id} user`;
-  }
+  async update(id: number, updateUserInput: UpdateUserInput) {
+    const result=await this.surveyRepository.update(id,updateUserInput);
+    if(result.affected === 0)
+        throw new NotFoundException();
+    return this.surveyRepository.findOneBy({id});
+}
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  async remove(id: number) {
+    //정상적인 상황에서도 오류띄우는데 어케 해결하냐
+    const result = await this.surveyRepository.delete(id);
+    console.log(result);
+    if(result.affected === 0)
+        throw new NotFoundException();
+    return null;
   }
 }
