@@ -7,6 +7,7 @@ import { Survey } from './survey/entity/survey.entity';
 import { UserModule } from './user/user.module';
 import { User } from './user/entities/user.entity';
 import { QuestionModule } from './question/question.module';
+import { Question } from './question/entities/question.entity';
 
 
 @Module({
@@ -20,7 +21,7 @@ import { QuestionModule } from './question/question.module';
     "username": "postgres",
     "password": "1234",
     "database": "food_survey",
-    "entities": [Survey,User,'dist/**/*.entity.{ts,js}'],
+    "entities": [Survey,User,Question,'dist/**/*.entity.{ts,js}'],
     "synchronize": false
   }),SurveyModule, UserModule, QuestionModule],
   controllers: [],
