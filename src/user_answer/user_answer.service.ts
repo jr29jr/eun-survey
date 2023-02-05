@@ -1,5 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { filter } from 'rxjs';
+import { User } from 'src/user/entities/user.entity';
 import { Repository } from 'typeorm';
 import { CreateUserAnswerInput } from './dto/create-user_answer.input';
 import { UpdateUserAnswerInput } from './dto/update-user_answer.input';
@@ -18,15 +20,15 @@ export class UserAnswerService {
 
   async findOne(id: number) {
     const result=await this.userAnswerRepository.findOneBy({id});
+    console.log(result);
     //없는 id접근하는 경우 처리하자
-
+    if(result === null)
+      throw new NotFoundException();
     return result;
   }
 
   async findByUserId(id: number) {
     const result=await this.userAnswerRepository.find({where : {user_id : id}});
-    //없는 id접근하는 경우 처리하자
-
     return result;
   }
 
@@ -43,6 +45,6 @@ export class UserAnswerService {
     console.log(result);
     if(result.affected === 0)
         throw new NotFoundException();
-    return null;
+    return new User();
   }
 }

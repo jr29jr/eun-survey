@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, UseFilters } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateUserInput } from './dto/create-user.input';
@@ -34,8 +34,6 @@ export class UserService {
     //정상적인 상황에서도 null 리턴하는거 처리해야한다.
     const result = await this.userRepository.delete(id);
     console.log(result);
-    if(result.affected === 0)
-        throw new NotFoundException();
     return null;
   }
 }
