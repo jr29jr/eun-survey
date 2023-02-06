@@ -11,4 +11,8 @@ export class User {
   @Field(() => String)
   @Column()
   nickname : string;
+
+  @Field(() => String)
+  @Column()
+  password : string;
 }
