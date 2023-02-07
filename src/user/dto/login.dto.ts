@@ -1,10 +1,13 @@
 import { InputType, Field, Int } from '@nestjs/graphql';
 
 @InputType()
-export class loginDto {
-  @Field(() => Int)
-  id: number;
+export class LoginDto {
+  @Field(() => String)
+  user_id: string;
 
   @Field(() => String)
   password: string;
+
+  @Field(() => Boolean)
+  keepLogIn: boolean;
 }

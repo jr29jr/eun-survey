@@ -15,7 +15,9 @@ type Question {
 
 type User {
   id: Int!
+  user_id: String!
   nickname: String!
+  password: String!
 }
 
 type Option {
@@ -42,7 +44,8 @@ type Query {
   getAll: [Survey!]!
   getQuestion(id: Int!): Question!
   getQuestions(id: Int!): [Question!]!
-  getUser(id: Int!): User!
+  logIn(loginDto: LoginDto!): User!
+  getUser(user_id: String!): User!
   getOptionsByQuestionId(id: Int!): [Option!]!
   getOption(id: Int!): Option!
   getUesrServey(id: Int!): UserSurvey!
@@ -52,6 +55,12 @@ type Query {
   getAnswersByUserId(id: Int!): [UserAnswer!]!
 }
 
+input LoginDto {
+  user_id: String!
+  password: String!
+  keepLogIn: Boolean!
+}
+
 type Mutation {
   createSurvey(inputList: CreateSurveyInput!): Survey!
   updateSurvey(updateInfo: UpdateSurveyInput!): Survey!
@@ -59,8 +68,8 @@ type Mutation {
   createQuestion(createQuestionInput: CreateQuestionInput!): Question!
   updateQuestion(updateQuestionInput: UpdateQuestionInput!): Question!
   removeQuestion(id: Int!): Question!
-  createUser(createUserInput: CreateUserInput!): User!
-  updateUser(updateUserInput: UpdateUserInput!): User!
+  createUser(createUserInput: CreateUserDto!): User!
+  updateUser(updateUserInput: UpdateUserDto!): User!
   removeUser(id: Int!): User!
   createOption(createOptionInput: CreateOptionInput!): Option!
   updateOption(updateOptionInput: UpdateOptionInput!): Option!
@@ -93,13 +102,16 @@ input UpdateQuestionInput {
   id: Int!
 }
 
-input CreateUserInput {
+input CreateUserDto {
+  user_id: String!
   nickname: String!
+  password: String!
 }
 
-input UpdateUserInput {
+input UpdateUserDto {
+  user_id: String!
   nickname: String!
-  id: Int!
+  password: String
 }
 
 input CreateOptionInput {
