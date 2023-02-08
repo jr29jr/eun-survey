@@ -30,7 +30,7 @@ export class SurveyResolver {
     }
 
     @Query(() => [Survey])
-    async getAll(){
+    async getSurveyAll(){
         return await this.surveyService.findAll();
     }
 }

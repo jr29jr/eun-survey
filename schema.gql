@@ -41,7 +41,7 @@ type UserAnswer {
 
 type Query {
   getSurvey(id: Int!): Survey!
-  getAll: [Survey!]!
+  getSurveyAll: [Survey!]!
   getQuestion(id: Int!): Question!
   getQuestions(id: Int!): [Question!]!
   logIn(loginDto: LoginDto!): User!

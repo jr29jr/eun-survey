@@ -27,8 +27,9 @@ import { UserAnswer } from './user_answer/entities/user_answer.entity';
     "username": "postgres",
     "password": "1234",
     "database": "food_survey",
-    "entities": [Survey,User,Question,Option,UserSurvey,UserAnswer,'dist/**/*.entity.{ts,js}'],
-    "synchronize": false
+    "entities": [Survey,User,Question,Option,UserSurvey,UserAnswer,'dist/**/*.entity.{ts,js}'],/**  */
+    "synchronize": false,
+    "logging" : ["query"]
   }),SurveyModule, UserModule, QuestionModule, OptionModule, UserSurveyModule, UserAnswerModule],
   controllers: [],
   providers: []

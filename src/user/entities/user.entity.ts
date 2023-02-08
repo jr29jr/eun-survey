@@ -8,7 +8,7 @@ export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Field(() => String)
+  @Field( () => String)
   @Column()
   user_id : string;
 

@@ -68,9 +68,10 @@ export class UserService {
   
   async update(user_id: string, updateUserInput: UpdateUserDto) {
     const result=await this.userRepository.update({user_id : user_id},updateUserInput);
+    const id=3
     if(result.affected === 0)
         throw new NotFoundException();
-    return this.userRepository.findOneBy({user_id : user_id});
+    return await this.userRepository.findOneBy({user_id : user_id});
   }
 
   async remove(id: number) {
